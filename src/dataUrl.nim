@@ -35,11 +35,15 @@ proc `$`*(self): string =
     data = encodeUrl self.data
   result = fmt"data:{self.mime}{props},{data}"
 
+const maxDataSize = 65529
+
 func initDataUrl*(data: string; mime = "text/plain"; base64 = true;
                   props = newSeq[DataUrlProp]()): DataUrl =
   ## Creates new DataUrl
   if '/' notin mime:
     raise newException(ValueError, "Invalid mime type")
+  if data.len > maxDataSize:
+    raise newException(ValueError, "Data is too large")
   result.data = data
   result.mime = mime
   if base64:
