@@ -82,9 +82,8 @@ const mimeTypes = {"aac": "audio/aac", "abw": "application/x-abiword",
     "xml": "application/xml", "xul": "application/vnd.mozilla.xul+xml",
     "zip": "application/zip", "3gp": "video/3gpp", "3g2": "video/3gpp2",
     "7z": "application/x-7z-compressed"}
-proc getMime*(filename: string): string =
+func getMime*(filename: string): string =
   ## Infer the filename mime type
-  echo filename.splitFile
   let file = filename.splitFile
   result = "text/plain"
   if file.ext.len > 0:
@@ -98,8 +97,9 @@ when isMainModule:
                            styledWriteLine, fgRed
   # from std/httpclient import newHttpClient, get, close, contentType, body
   import std/httpclient
-  from std/strutils import split
+  from std/strutils import split, repeat
   from std/os import fileExists
+  from std/terminal import terminalWidth
 
   const remoteProtocols = ["http", "https", "ftp", "ftps"]
   func isRemote(url: string): bool =
@@ -140,8 +140,8 @@ when isMainModule:
         )
         echo dataUrl
 
-      if i < url.len:
-        echo ""
+      if i < urls.len - 1:
+        styledEcho "\n", styleDim, "-".repeat terminalWidth(), "\n"
 
   import pkg/cligen
   dispatch main, help = {
