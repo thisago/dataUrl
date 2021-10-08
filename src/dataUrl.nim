@@ -36,6 +36,7 @@ proc `$`*(self): string =
   result = fmt"data:{self.mime}{props},{data}"
 
 const maxDataSize = 65529
+  ## Max size of data url (https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs#specifications)
 
 func initDataUrl*(data: string; mime = "text/plain"; base64 = true;
                   props = newSeq[DataUrlProp]()): DataUrl =
