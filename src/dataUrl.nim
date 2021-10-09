@@ -167,7 +167,7 @@ when isMainModule:
               styledEcho styleDim, "Saved this data url in ", resetStyle, outFile
             else:
               styledEcho styleDim, "Saved all data urls in ", resetStyle, outFile
-              content = &"{url}\t\"{data}\""
+              content = &"{url}\t{data}"
 
             let f = open(outFile, fmAppend)
             f.writeLine content

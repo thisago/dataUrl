@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.0.0"
+version       = "1.0.1"
 author        = "Thiago Ferreira"
 description   = "Converts locally or remote resources in data url content"
 license       = "MIT"
