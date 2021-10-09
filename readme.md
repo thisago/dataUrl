@@ -50,12 +50,13 @@ Usage:
   main [optional-params] Content urls (can be local or remote)
 Data Url
 Options:
-  -h, --help                     print this cligen-erated help
-  --help-syntax                  advanced: prepend,plurals,..
-  -m=, --mime=     string  ""    Force the mime type; Default is auto
-  -b, --base64     bool    true  Disable base64 encoding
-  -o=, --outDir=   string  ""    Saves the output files in one folder
-  -O=, --outFile=  string  ""    Saves the output to one file (tsv)
+  -h, --help                      print this cligen-erated help
+  --help-syntax                   advanced: prepend,plurals,..
+  -m=, --mime=     string  ""     Force the mime type; Default is auto
+  -b, --base64     bool    true   Disable base64 encoding
+  -o=, --outDir=   string  ""     Saves the output files in one folder
+  -O=, --outFile=  string  ""     Saves the output to one file (tsv)
+  -c, --clean      bool    false  Easy to integrate output
 ```
 
 ---

@@ -2,6 +2,12 @@
 
 Changes in `dataUrl`
 
+## Version 1.2.0 (09/10/2021)
+
+- Added clean output with `-c`or `--clean`
+
+---
+
 ## Version 1.1.1 (09/10/2021)
 
 - Changed `base64` param help

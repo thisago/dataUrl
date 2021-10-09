@@ -126,7 +126,7 @@ when isMainModule:
         result.add ch
 
   proc main(urls: seq[string]; mime = ""; base64 = true; outDir = "";
-            outFile = "") =
+            outFile = ""; clean = false) =
     ## Data Url
     if urls.len < 1:
       styledEcho fgRed, "No url provided"
@@ -137,7 +137,8 @@ when isMainModule:
       var
         mimeType = "mime"
         data = ""
-      styledEcho fgGreen, styleDim, url
+      if not clean:
+        styledEcho fgGreen, styleDim, url
       if url.isRemote:
         let
           client = newHttpClient()
@@ -184,9 +185,9 @@ when isMainModule:
             res.toOut outDir, url, true
         else:
           echo res
-
-      if i < urls.len - 1:
-        styledEcho "\n", styleDim, "-".repeat terminalWidth(), "\n"
+      if not clean:
+        if i < urls.len - 1:
+          styledEcho "\n", styleDim, "-".repeat terminalWidth(), "\n"
 
   import pkg/cligen
   dispatch main, help = {
@@ -195,6 +196,7 @@ when isMainModule:
     "outFile": "Saves the output to one file (tsv)",
     "outDir": "Saves the output files in one folder",
     "base64": "Disable base64 encoding",
+    "clean": "Easy to integrate output",
   }, short = {
     "outFile": 'O',
     "outDir": 'o'
