@@ -1,6 +1,6 @@
 # Package
 
-version       = "0.1.0"
+version       = "1.0.0"
 author        = "Thiago Ferreira"
 description   = "Converts locally or remote resources in data url content"
 license       = "MIT"
@@ -22,4 +22,4 @@ task build_release, "Builds the release version":
 task build_danger, "Builds the danger version":
   exec "nimble -d:danger build"
 task gen_docs, "Generates the documentation":
-  exec "nim doc --project --out:docs src/img2url.nim"
+  exec "nim doc --project --out:docs src/dataUrl.nim"

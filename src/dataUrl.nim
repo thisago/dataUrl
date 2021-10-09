@@ -2,7 +2,7 @@
 
 from std/base64 import encode
 from std/uri import encodeUrl
-from std/strformat import fmt
+from std/strformat import `&`
 from std/os import splitFile
 
 type
@@ -23,9 +23,9 @@ proc `$`*(self): string =
     props = ""
     toBase64 = false
   for (key, val) in self.props:
-    var prop = fmt";{key}"
+    var prop = &";{key}"
     if val.len > 0:
-      prop.add fmt"={val}"
+      prop.add &"={val}"
     if key == "base64":
       toBase64 = true
     props.add prop
@@ -33,7 +33,7 @@ proc `$`*(self): string =
     data = base64.encode self.data
   else:
     data = encodeUrl self.data
-  result = fmt"data:{self.mime}{props},{data}"
+  result = &"data:{self.mime}{props},{data}"
 
 const maxDataSize = 65529
   ## Max size of data url (https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs#specifications)
@@ -103,7 +103,7 @@ when isMainModule:
   # from std/httpclient import newHttpClient, get, close, contentType, body
   import std/httpclient
   from std/strutils import split, repeat
-  from std/os import fileExists
+  from std/os import fileExists, expandFilename, `/`, createDir, dirExists
   from std/terminal import terminalWidth
 
   const remoteProtocols = ["http", "https", "ftp", "ftps"]
@@ -114,11 +114,20 @@ when isMainModule:
       if parts[0] in remoteProtocols:
         result = true
 
-  proc main(urls: seq[string]; mime = ""; base64 = true) =
+  const InvalidFilename = {'/','\\',':','*','?','"','<','>'}
+  proc secureName*(str: string): string =
+    for ch in str:
+      if ch notin InvalidFilename:
+        result.add ch
+
+  proc main(urls: seq[string]; mime = ""; base64 = true; outDir = "";
+            outFile = "") =
     ## Data Url
     if urls.len < 1:
       styledEcho fgRed, "No url provided"
       quit 1
+    if outFile.len > 0:
+      writeFile outFile, "source\tdata url\n"
     for i, url in urls:
       var
         mimeType = "mime"
@@ -138,18 +147,49 @@ when isMainModule:
           data = readFile url
 
       if data.len > 0:
-        let dataUrl = initDataUrl(
-          data = data,
-          base64 = base64,
-          mime = mimeType
-        )
-        echo dataUrl
+        let
+          dataUrl = initDataUrl(
+            data = data,
+            base64 = base64,
+            mime = mimeType
+          )
+          res = $dataUrl
+        if outFile.len > 0 or outDir.len > 0:
+          proc toOut(data, dir, url: string; isDir: bool) =
+            var
+              outFile = dir
+              content = data
+            if isDir:
+              if not dirExists dir:
+                createDir dir
+              let parts = splitFile url
+              outFile = dir / secureName parts.name & parts.ext
+              styledEcho styleDim, "Saved this data url in ", resetStyle, outFile
+            else:
+              styledEcho styleDim, "Saved all data urls in ", resetStyle, outFile
+              content = &"{url}\t\"{data}\""
+
+            let f = open(outFile, fmAppend)
+            f.writeLine content
+            f.close()
+
+          if outFile.len > 0:
+            res.toOut outFile, url, false
+          if outDir.len > 0:
+            res.toOut outDir, url, true
+        else:
+          echo res
 
       if i < urls.len - 1:
         styledEcho "\n", styleDim, "-".repeat terminalWidth(), "\n"
 
   import pkg/cligen
   dispatch main, help = {
-    "urls": "Content urls, can be local or remote",
+    "urls": "Content urls (can be local or remote)",
     "mime": "Force the mime type; Default is auto",
+    "outFile": "Saves the output to one file (tsv)",
+    "outDir": "Saves the output files in one folder",
+  }, short = {
+    "outFile": 'O',
+    "outDir": 'o'
   }
