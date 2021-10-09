@@ -2,7 +2,7 @@
 
 version       = "1.0.1"
 author        = "Thiago Ferreira"
-description   = "Converts locally or remote resources in data url content"
+description   = "Easily create data urls! CLI included"
 license       = "MIT"
 srcDir        = "src"
 

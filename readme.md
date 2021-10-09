@@ -1,6 +1,8 @@
 # dataUrl
 
-Easily create data urls
+Easily create data urls! CLI included
+
+**Lib usage**
 ```nim
 import dataUrl
 echo initDataUrl(
