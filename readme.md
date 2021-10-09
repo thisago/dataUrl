@@ -9,6 +9,18 @@ echo initDataUrl(
 )
 ```
 
+## Installation
+
+### Requirements
+- [Nim](https://nim-lang.org/)
+- Git
+
+```bash
+$ nimble install https://github.com/thisago/downpodia
+```
+
+---
+
 ## CLI
 
 Converts locally or remote images in data url content
@@ -19,16 +31,6 @@ Converts locally or remote images in data url content
 - Save all results in a `TSV` file using `-O` option
 - Can be integrated with any project
 <!-- - Lib works with JS (Not tested) -->
-
-### Installation
-
-#### Requirements
-- [Nim](https://nim-lang.org/)
-- Git
-
-```bash
-$ nimble install https://github.com/thisago/downpodia
-```
 
 ### Usage
 ```bash
