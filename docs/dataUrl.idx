@@ -2,5 +2,5 @@ DataUrl	dataUrl.html#DataUrl	dataUrl: DataUrl
 DataUrlProp	dataUrl.html#DataUrlProp	dataUrl: DataUrlProp	
 `$`	dataUrl.html#$	dataUrl: `$`(self): string	
 initDataUrl	dataUrl.html#initDataUrl,string,string	dataUrl: initDataUrl(data: string; mime = &quot;text/plain&quot;; base64 = true;\n            props = newSeq[DataUrlProp]()): DataUrl	
-getMime	dataUrl.html#getMime,string	dataUrl: getMime(filename: string): string	
+getMime	dataUrl.html#getMime,string	dataUrl: getMime(rawExt: string): string	
 secureName	dataUrl.html#secureName,string	dataUrl: secureName(str: string): string	

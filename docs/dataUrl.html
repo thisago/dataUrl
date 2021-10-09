@@ -121,7 +121,7 @@ window.addEventListener('DOMContentLoaded', main);
   </ul>
   <ul class="simple nested-toc-section">getMime
       <li><a class="reference" href="#getMime%2Cstring"
-    title="getMime(filename: string): string">getMime(filename: string): string</a></li>
+    title="getMime(rawExt: string): string">getMime(rawExt: string): string</a></li>
 
   </ul>
   <ul class="simple nested-toc-section">initDataUrl
@@ -185,10 +185,12 @@ Stringify
 </dd>
 </div>
 <div id="getMime,string">
-<dt><pre><span class="Keyword">func</span> <a href="#getMime%2Cstring"><span class="Identifier">getMime</span></a><span class="Other">(</span><span class="Identifier">filename</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
+<dt><pre><span class="Keyword">func</span> <a href="#getMime%2Cstring"><span class="Identifier">getMime</span></a><span class="Other">(</span><span class="Identifier">rawExt</span><span class="Other">:</span> <span class="Identifier">string</span><span class="Other">)</span><span class="Other">:</span> <span class="Identifier">string</span> {.<span><span class="Other pragmadots">...</span></span><span class="pragmawrap"><span class="Identifier">raises</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span><span class="Other">,</span> <span class="Identifier">tags</span><span class="Other">:</span> <span class="Other">[</span><span class="Other">]</span></span>.}</pre></dt>
 <dd>
 
-Infer the filename mime type
+<p>Infer the filename mime type be given ext</p>
+<p>ext can have dot (<tt class="docutils literal"><span class="pre"><span class="Operator">.</span></span></tt>) in start</p>
+
 
 </dd>
 </div>
@@ -220,7 +222,7 @@ Creates new DataUrl
       <div class="twelve-columns footer">
         <span class="nim-sprite"></span>
         <br/>
-        <small style="color: var(--hint);">Made with Nim. Generated: 2021-10-09 11:48:28 UTC</small>
+        <small style="color: var(--hint);">Made with Nim. Generated: 2021-10-09 16:57:24 UTC</small>
       </div>
     </div>
   </div>
