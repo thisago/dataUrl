@@ -5,6 +5,7 @@ Changes in `dataUrl`
 ## Version 1.2.0 (09/10/2021)
 
 - Added clean output with `-c`or `--clean`
+- Added piped stdin compatibility
 
 ---
 

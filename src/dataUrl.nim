@@ -109,7 +109,7 @@ when isMainModule:
   import std/httpclient
   from std/strutils import split, repeat
   from std/os import fileExists, expandFilename, `/`, createDir, dirExists,
-                     splitFile
+                     splitFile, removeFile, getTempDir
 
   const remoteProtocols = ["http", "https", "ftp", "ftps"]
   func isRemote(url: string): bool =
@@ -125,17 +125,28 @@ when isMainModule:
       if ch notin InvalidFilename:
         result.add ch
 
+  let tempStdinFile = getTempDir() / ".stdin"
+
   proc main(urls: seq[string]; mime = ""; base64 = true; outDir = "";
             outFile = ""; clean = false) =
     ## Data Url
+    var allUrls = urls
     if urls.len < 1:
-      styledEcho fgRed, "No url provided"
-      quit 1
+      var stdinput = ""
+      var line = ""
+      while stdin.readLine line:
+        stdinput.add &"{line}\l"
+      if stdinput.len > 0:
+        writeFile tempStdinFile, stdinput
+        allUrls.add tempStdinFile
+      else:
+        styledEcho fgRed, "No url provided"
+        quit 1
     if outFile.len > 0:
       writeFile outFile, "source\tdata url\n"
-    for i, url in urls:
+    for i, url in allUrls:
       var
-        mimeType = "mime"
+        mimeType = mime
         data = ""
       if not clean:
         styledEcho fgGreen, styleDim, url
@@ -188,6 +199,8 @@ when isMainModule:
       if not clean:
         if i < urls.len - 1:
           styledEcho "\n", styleDim, "-".repeat terminalWidth(), "\n"
+    if fileExists tempStdinFile:
+      removeFile tempStdinFile
 
   import pkg/cligen
   dispatch main, help = {
