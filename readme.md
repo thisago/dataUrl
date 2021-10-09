@@ -43,5 +43,9 @@ Options:
   -O=, --outFile=  string  ""    Saves the output to one file (tsv)
 ```
 
+## TODO
+
+- [ ] Add tests
+
 ## License
 GPL-3
