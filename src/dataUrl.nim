@@ -194,6 +194,7 @@ when isMainModule:
     "mime": "Force the mime type; Default is auto",
     "outFile": "Saves the output to one file (tsv)",
     "outDir": "Saves the output files in one folder",
+    "base64": "Disable base64 encoding",
   }, short = {
     "outFile": 'O',
     "outDir": 'o'

@@ -1,11 +1,10 @@
 # Package
 
-version       = "1.1.0"
+version       = "1.1.1"
 author        = "Thiago Ferreira"
 description   = "Easily create data urls! CLI included"
 license       = "MIT"
 srcDir        = "src"
-
 
 # Dependencies
 
