@@ -32,7 +32,7 @@ Converts locally or remote images in data url content
 - Work with local paths and remote urls seamless
 - Save all results in a `TSV` file using `-O` option
 - Can be integrated with any project
-<!-- - Lib works with JS (Not tested) -->
+- Lib works with JS (not CLI)
 
 ### Usage
 ```bash
@@ -67,6 +67,7 @@ Options:
 
 - [ ] Add tests
 - [ ] Add `docs` to GH Pages
+- [ ] Add js examples
 
 ## License
 GPL-3

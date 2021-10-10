@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.2.0"
+version       = "1.2.1"
 author        = "Thiago Ferreira"
 description   = "Easily create data urls! CLI included"
 license       = "MIT"
@@ -15,6 +15,7 @@ requires "cligen"
 
 bin = @["dataUrl"]
 binDir = "build"
+installExt = @["nim"]
 
 task build_release, "Builds the release version":
   exec "nimble -d:release build"

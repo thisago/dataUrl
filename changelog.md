@@ -2,6 +2,13 @@
 
 Changes in `dataUrl`
 
+## Version 1.2.1 (09/10/2021)
+
+- Tested js (works)
+- Fixed `.nim` not added to `.nimble/pkgs`
+
+---
+
 ## Version 1.2.0 (09/10/2021)
 
 - Added clean output with `-c`or `--clean`
