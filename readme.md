@@ -59,6 +59,7 @@ Options:
   -o=, --outDir=   string  ""     Saves the output files in one folder
   -O=, --outFile=  string  ""     Saves the output to one file (tsv)
   -c, --clean      bool    false  Easy to integrate output
+  -a, --anySize    bool    false  Disable max data url size (65529) verification
 ```
 
 ---
@@ -68,6 +69,7 @@ Options:
 - [ ] Add tests
 - [ ] Add `docs` to GH Pages
 - [ ] Add js examples
+- [ ] Add to `nim-lang/packages`
 
 ## License
 GPL-3

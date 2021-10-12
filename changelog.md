@@ -2,6 +2,12 @@
 
 Changes in `dataUrl`
 
+## Version 1.3.0 (11/10/2021)
+
+- Optional max data url size verification (not anymore mandatory)
+
+---
+
 ## Version 1.2.1 (09/10/2021)
 
 - Tested js (works)

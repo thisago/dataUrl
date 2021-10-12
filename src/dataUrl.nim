@@ -35,14 +35,14 @@ proc `$`*(self): string =
   result = &"data:{self.mime}{props},{data}"
 
 const maxDataSize = 65529
-  ## Max size of data url (https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs#specifications)
+  ## Max size of data url (https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs#common_problems)
 
 func initDataUrl*(data: string; mime = "text/plain"; base64 = true;
-                  props = newSeq[DataUrlProp]()): DataUrl =
+                  props = newSeq[DataUrlProp](); verifySize = true): DataUrl =
   ## Creates new DataUrl
   if '/' notin mime:
     raise newException(ValueError, "Invalid mime type")
-  if data.len > maxDataSize:
+  if verifySize and data.len > maxDataSize:
     raise newException(ValueError, "Data is too large")
   result.data = data
   result.mime = mime
@@ -128,12 +128,13 @@ when isMainModule:
   let tempStdinFile = getTempDir() / ".stdin"
 
   proc main(urls: seq[string]; mime = ""; base64 = true; outDir = "";
-            outFile = ""; clean = false) =
+            outFile = ""; clean = false; anySize = false) =
     ## Data Url
     var allUrls = urls
     if urls.len < 1:
-      var stdinput = ""
-      var line = ""
+      var
+        stdinput = ""
+        line = ""
       while stdin.readLine line:
         stdinput.add &"{line}\l"
       if stdinput.len > 0:
@@ -168,7 +169,8 @@ when isMainModule:
           dataUrl = initDataUrl(
             data = data,
             base64 = base64,
-            mime = mimeType
+            mime = mimeType,
+            verifySize = not anySize
           )
           res = $dataUrl
         if outFile.len > 0 or outDir.len > 0:
@@ -210,6 +212,7 @@ when isMainModule:
     "outDir": "Saves the output files in one folder",
     "base64": "Disable base64 encoding",
     "clean": "Easy to integrate output",
+    "anySize": "Disable max data url size (" & $maxDataSize & ") verification",
   }, short = {
     "outFile": 'O',
     "outDir": 'o'
