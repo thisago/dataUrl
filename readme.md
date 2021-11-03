@@ -18,7 +18,7 @@ echo initDataUrl(
 - Git
 
 ```bash
-$ nimble install https://github.com/thisago/downpodia
+$ nimble install https://github.com/thisago/dataUrl
 ```
 
 ---
