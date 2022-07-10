@@ -1,7 +1,7 @@
 # Package
 
-version       = "1.3.0"
-author        = "Thiago Ferreira"
+version       = "1.3.1"
+author        = "Thiago Navarro"
 description   = "Easily create data urls! CLI included"
 license       = "MIT"
 srcDir        = "src"

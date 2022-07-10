@@ -1,6 +1,10 @@
 # Changelog
 
-Changes in `dataUrl`
+## Version 1.3.1 (Jul 10, 2022)
+
+- Added `jpg` to mime formats list
+
+---
 
 ## Version 1.3.0 (11/10/2021)
 

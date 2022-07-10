@@ -64,7 +64,7 @@ const mimeTypes = {
   "eot": "application/vnd.ms-fontobject", "epub": "application/epub+zip",
   "gz": "application/gzip", "gif": "image/gif", "htm": "text/html",
   "ico": "image/vnd.microsoft.icon", "ics": "text/calendar",
-  "jar": "application/java-archive", "jpeg": "image/jpeg",
+  "jar": "application/java-archive", "jpeg": "image/jpeg", "jpg": "image/jpeg",
   "js": "text/javascript", "json": "application/json",
   "jsonld": "application/ld+json", "mid": "audio/midi",
   "mjs": "text/javascript", "mp3": "audio/mpeg", "mp4": "video/mp4",
